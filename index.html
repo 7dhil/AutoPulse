@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Frontend/styles.css">
+    <script src="/Frontend/Javascripts/intro.js" defer></script>
+    <script src="/Frontend/Javascripts/login.js" defer></script>
+    <script src="/Frontend/Javascripts/data.js" defer></script>
+    <script src="/Frontend/Javascripts/index.js" defer></script>
+    <title>Auto Pulse</title>
+</head>
+<body class="home">
+    <video class="v-bg2" autoplay loop muted>
+        <source src="/Frontend/Images/homebgvid.mp4" type="video/webm" />
+    </video>
+    <div class="intro">
+        <h1 class="logo-header">
+            <span class="logo">Auto</span><span class="logo">Pulse.</span>
+        </h1>
+    </div>
+    <header>
+        <div class="logo-1" onclick="window.location.href='/Pages/Offers.html'">
+            <img src="/Frontend/Images/logo.png" alt="Logo-1">
+        </div>
+        <div class="nav-links">
+            <nav class="navbar">
+                <a href="/Frontend/index.html">Home</a>
+                <a href="#" id="vehicles-link">Our Vehicles</a>
+                <a href="/Frontend/Pages/Offers.html">Offers</a>
+            </nav>
+        </div>
+    </header>
+    <img class="homebg" src="/Frontend/Images/home bg main.png">
+<div class="homecontainer-1">
+    <img class="collage-1" src="/Frontend/Images/car collage 2.png">
+    <div class="hc-1">
+        <h1 class="welcome">welcome to AutoPulse</h1>
+        <p class="content-1">Discover a smarter way to own your dream car. At Autopulse, we bring you the best deals on brand-new cars, offering prices that are significantly lower than traditional showrooms. Our mission is simple: to make car ownership affordable, hassle-free, and transparent for everyone.
+        <br>
+        <br>
+        Whether you're looking for luxury, performance, or budget-friendly options, Autopulse has a wide selection of vehicles from top brands. Browse, compare, and buy—all from the comfort of your home.
+        <br> 
+        <br>    
+        Start your journey with Autopulse today and experience the joy of driving a brand-new car without breaking the bank.
+    </p>
+    </div>
+</div>
+<div class="homecontainer-2">
+        <img class="collage-2" src="/Frontend/Images/work collage.png">
+    <div class="hc-2">
+    <h1 class="work">How AutoPulse Works</h1>
+    <p class="content-2"> 
+        1 - Browse Our Selection <br>
+        Explore a wide range of brand-new cars from top brands.
+        <br>
+        <br>
+        2-Filter & Compare<br>
+        Narrow down options based on your preferences and compare prices.
+        <br>
+        <br>
+        3-Get a Personalized Quote<br>
+        Receive a tailored offer for the car you want.
+        <br>
+        <br>
+        4-Easy Financing<br>
+        Choose from flexible financing options to suit your budget.
+        <br>
+        <br>
+        5-Place Your Order<br>
+        Secure your car with just a few clicks.
+        <br>
+        <br>
+        6-Free Home Delivery<br>
+        We’ll deliver your brand-new car directly to your doorstep.
+    </p>
+    </div>
+</div>
+
+        <h1 class="contact">Contact Us</h1>
+        <p class="content-3">
+            Phone: +971 55 1234567 |   Email: support@autopulse.com | Address: AutoPulse,Downtown,Dubai
+        </p>
+        <img class="socials" src="/Frontend/Images/socials.png" height="40px" width="140px" alt="">
+        </div>
+    <div id="SignUp-page" class="pop-up">
+        <div class="SignUp-content">
+            <span class="close">&times;</span>
+            <h2 class="sign-up">Sign Up!</h2>
+            <p class="signup-c">So we can send you our latest offers and promotions!</p>
+            <form id="SignUp-Form">
+                <label class="username" for="email">Username</label>
+                <input type="text" id="email" name="email" required>
+                <label class="password"for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <button id = "s-btn"type="submit">Sign Up</button>
+                <p class="ccc">By signing up you are agreeing to out Terms and Conditions.</p>
+            </form>
+        </div>
+    </div>
+    <footer class="F-home">
+        Copyright © 2023 Erased Disks Ltd
+    </footer>
+    <script> document.addEventListener("DOMContentLoaded", () => {
+        const signUpForm = document.getElementById("SignUp-Form");
+    
+        signUpForm.addEventListener("submit", async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+            
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+    
+            try {
+                const response = await fetch('http://localhost:4000/api/user/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+    
+                if (response.ok) {
+                    const result = await response.json();
+                    alert('Registration successful!');
+                    window.location.href = '/Frontend/Pages/Our Vehicles.html'; // Redirect after success
+                } else {
+                    const errorData = await response.json();
+                    alert(`Error: ${errorData.message}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred during registration. Please try again.');
+            }
+        });
+    });
+    
+    </script>
+</body>
+</html>
